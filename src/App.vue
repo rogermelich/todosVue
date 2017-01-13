@@ -16,15 +16,15 @@
       </md-toolbar>
       <div class="phone-viewport">
           <md-list class="md-dense">
-            <md-list-item>
+            <md-list-item @click="toggleLeftSidenav">
               <md-icon>done_all</md-icon> <router-link to="/todos">Todos</router-link>
             </md-list-item>
 
-            <md-list-item>
+            <md-list-item @click="toggleLeftSidenav">
               <md-icon>https</md-icon> <router-link to="/tokens">Tokens</router-link>
             </md-list-item>
 
-            <md-list-item>
+            <md-list-item @click="toggleLeftSidenav">
               <md-avatar>
                 <img src="https://placeimg.com/40/40/people/5" alt="People">
               </md-avatar>
@@ -53,7 +53,7 @@ export default {
     Hello
   },
   methods: {
-    toggleLeftSidenav  () {
+    toggleLeftSidenav () {
       this.$refs.leftSidenav.toggle()
     },
     open (ref) {
