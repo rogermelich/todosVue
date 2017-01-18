@@ -6,6 +6,10 @@ import VueMaterial from 'vue-material'
 
 import 'vue-material/dist/vue-material.css'
 import VueRouter from 'vue-router'
+import Axios from 'axios'
+
+window.axios = Axios
+Vue.prototype.$http = Axios
 
 import Todos from 'components/Todos.vue'
 import Tokens from 'components/Tokens.vue'
