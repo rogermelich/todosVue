@@ -31,6 +31,7 @@ export default{
   created () {
     var token = this.extractToken(document.location.hash)
     if (token) this.saveToken(token)
+    if (!this.token == null) this.token = this.fetchToken()
     if (this.fetchToken()) {
       this.authorized = true
     } else {

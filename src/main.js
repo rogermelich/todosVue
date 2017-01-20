@@ -10,7 +10,7 @@ import Axios from 'axios'
 import querystring from 'querystring'
 
 window.axios = Axios
-windows.querystring = QueryString
+window.querystring = querystring
 Vue.prototype.$http = Axios
 
 import Todos from 'components/Todos.vue'
@@ -22,7 +22,7 @@ const routes = [
 ]
 
 const router = new VueRouter({
-  mode : 'history',
+  mode: 'history',
   routes
 })
 
