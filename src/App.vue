@@ -67,5 +67,8 @@ export default {
 </script>
 
 <style>
-
+a {
+  color: inherit;
+  text-decoration: none;
+}
 </style>
