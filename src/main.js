@@ -15,11 +15,13 @@ Vue.prototype.$http = Axios
 
 import Todos from 'components/Todos.vue'
 import Tokens from 'components/Tokens.vue'
+import Profile from 'components/Profile.vue'
+import routes from 'routes.js'
 
-const routes = [
-  { path: '/todos', component: Todos },
-  { path: '/tokens', component: Tokens }
-]
+// const routes = [
+//   { path: '/todos', component: Todos },
+//   { path: '/tokens', component: Tokens },
+// ]
 
 const router = new VueRouter({
   mode: 'history',

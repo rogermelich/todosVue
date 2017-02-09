@@ -1,7 +1,7 @@
 <template>
     <div>
         <div v-show="!authorized">
-            <md-button class="md-raised md-primary" @click="connect">Connect</md-button>
+            <md-button class="md-raised md-primary" @click="login">Login</md-button>
         </div>
         <div v-show="authorized">
             <md-button class="md-raised md-primary" @click="logout">Logout</md-button>
@@ -58,14 +58,19 @@ export default{
       })
     },
     extractToken: function (hash) {
-      var match = hash.match(/access_token=(\w+)/)
-      return !!match && match[1]
+      return hash.match(/#(?:access_token)=([\S\s]*?)&/)[1]
+        return !!match && match[1]		 +    },
+      showConnectionError () {
+        this.$refs.connectionError.open()
+      },
+      initLogout: function () {
+        this.openDialog('sureToLogout')
     },
     logout: function () {
       window.localStorage.removeItem(STORAGE_KEY)
       this.authorized = false
     },
-    connect: function () {
+    login: function () {
       query = {
         client_id: AUTH_CLIENT_ID,
         redirect_uri: AUTH_REDIRECT_URI,
