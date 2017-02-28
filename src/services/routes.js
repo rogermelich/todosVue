@@ -5,6 +5,8 @@ import Todos from '../components/Todos'
 import Tokens from '../components/Tokens'
 import Profile from '../components/Profile'
 import Login from '../components/Login'
+import Vibrate from '../components/Vibrate'
+import DeviceInfo from '../components/DeviceInfo.vue'
 import NotFound from '../components/NotFound'
 
 const routes = [
@@ -23,6 +25,14 @@ const routes = [
   { path: '/profile',
     component: Profile,
     meta: { auth: true }
+  },
+  { path: '/device-info',
+    component: DeviceInfo,
+    meta: { auth: false }
+  },
+  { path: '/vibrate',
+    component: Vibrate,
+    meta: { auth: false }
   },
   { path: '/login',
     component: Login,

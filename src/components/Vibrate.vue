@@ -1,0 +1,9 @@
+<template>
+    <div>
+        Vibrate!
+    </div>
+</template>
+<style>
+</style>
+<script>
+</script>

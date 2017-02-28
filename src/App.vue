@@ -25,6 +25,14 @@
             </md-list-item>
 
             <md-list-item @click="toggleLeftSidenav">
+              <md-icon>announcement</md-icon> <router-link to="/device-info">Device Info</router-link>
+            </md-list-item>
+
+            <md-list-item @click="toggleLeftSidenav">
+              <md-icon>alarm_on</md-icon> <router-link to="/vibrate">Vibrate</router-link>
+            </md-list-item>
+
+            <md-list-item @click="toggleLeftSidenav">
               <md-avatar>
                 <img src="https://placeimg.com/40/40/people/5" alt="People">
               </md-avatar>
