@@ -29,6 +29,14 @@ import router from './services/router'
 Vue.use(VueMaterial)
 Vue.use(VueRouter)
 
+/* vue-material themes */
+Vue.material.registerTheme('default', {
+  primary: 'blue',
+  accent: 'red',
+  warn: 'red',
+  background: 'white'
+})
+
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
