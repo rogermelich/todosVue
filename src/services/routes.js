@@ -20,7 +20,7 @@ const routes = [
   },
   { path: '/tokens',
     component: Tokens,
-    meta: { auth: false }
+    meta: { auth: true }
   },
   { path: '/profile',
     component: Profile,

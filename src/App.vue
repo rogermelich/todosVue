@@ -25,7 +25,11 @@
             </md-list-item>
 
             <md-list-item @click="toggleLeftSidenav">
-              <md-icon>announcement</md-icon> <router-link to="/device-info">Device Info</router-link>
+              <md-icon>account_circle</md-icon> <router-link to="/profile">Profile</router-link>
+            </md-list-item>
+
+            <md-list-item @click="toggleLeftSidenav">
+              <md-icon>perm_device_information</md-icon> <router-link to="/device-info">Device Info</router-link>
             </md-list-item>
 
             <md-list-item @click="toggleLeftSidenav">

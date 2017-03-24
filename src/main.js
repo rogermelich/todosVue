@@ -9,6 +9,7 @@ import VueRouter from 'vue-router'
 import Axios from 'axios'
 import querystring from 'querystring'
 import auth from './services/auth'
+// import Avatar from 'vue-avatar'
 
 window.axios = Axios
 window.querystring = querystring
@@ -28,6 +29,7 @@ import router from './services/router'
 
 Vue.use(VueMaterial)
 Vue.use(VueRouter)
+// Vue.use(Avatar)
 
 /* vue-material themes */
 Vue.material.registerTheme('default', {
