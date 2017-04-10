@@ -8,7 +8,7 @@
       <h2 class="md-title">Todos</h2>
     </md-toolbar>
 
-    <md-sidenav class="md-left" ref="leftSidenav" @open="open('Left')" @close="close('Left')">
+    <md-sidenav class="main-sidebar md-left" ref="leftSidenav" @open="open('Left')" @close="close('Left')">
       <md-toolbar class="md-large">
         <div class="md-toolbar-container">
           <h3 class="md-title">Todo Content</h3>
@@ -17,35 +17,27 @@
       <div class="phone-viewport">
           <md-list class="md-dense">
             <md-list-item @click="toggleLeftSidenav">
-              <md-icon>done_all</md-icon> <router-link to="/todos">Todos</router-link>
+              <md-icon>done_all</md-icon> <router-link exact to="/todos">Todos</router-link>
             </md-list-item>
 
             <md-list-item @click="toggleLeftSidenav">
-              <md-icon>https</md-icon> <router-link to="/tokens">Tokens</router-link>
+              <md-icon>https</md-icon> <router-link exact to="/tokens">Tokens</router-link>
             </md-list-item>
 
             <md-list-item @click="toggleLeftSidenav">
-              <md-icon>account_circle</md-icon> <router-link to="/profile">Profile</router-link>
+              <md-icon>account_circle</md-icon> <router-link exact to="/profile">Profile</router-link>
             </md-list-item>
 
             <md-list-item @click="toggleLeftSidenav">
-              <md-icon>perm_device_information</md-icon> <router-link to="/device-info">Device Info</router-link>
+              <md-icon>perm_device_information</md-icon> <router-link exact to="/device-info">Device Info</router-link>
             </md-list-item>
 
             <md-list-item @click="toggleLeftSidenav">
-              <md-icon>alarm_on</md-icon> <router-link to="/vibrate">Vibrate</router-link>
+              <md-icon>alarm_on</md-icon> <router-link exact to="/vibrate">Vibrate</router-link>
             </md-list-item>
 
             <md-list-item @click="toggleLeftSidenav">
-              <md-avatar>
-                <img src="https://placeimg.com/40/40/people/5" alt="People">
-              </md-avatar>
-
-              <span>Abbey Christansen</span>
-
-              <md-button class="md-icon-button md-list-action">
-                <md-icon class="md-primary">chat_bubble</md-icon>
-              </md-button>
+              <md-icon>exit_to_app</md-icon> <router-link exact to="/login">Login/Logout</router-link>
             </md-list-item>
           </md-list>
         </div>
@@ -57,13 +49,8 @@
 </template>
 
 <script>
-import Hello from './components/Hello'
-
 export default {
   name: 'app',
-  components: {
-    Hello
-  },
   methods: {
     toggleLeftSidenav () {
       this.$refs.leftSidenav.toggle()

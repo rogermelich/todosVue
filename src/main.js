@@ -36,11 +36,31 @@ Vue.use(VueRouter)
 // Vue.use(Avatar)
 
 /* vue-material themes */
-Vue.material.registerTheme('default', {
-  primary: 'blue',
-  accent: 'red',
-  warn: 'red',
-  background: 'white'
+Vue.material.registerTheme({
+  notfound: {
+    primary: 'red',
+    accent: 'orange',
+    warn: 'red',
+    background: 'white'
+  },
+  todostokens: {
+    primary: 'purple',
+    accent: 'deep-purple',
+    warn: 'red',
+    background: 'white'
+  },
+  profile: {
+    primary: 'green',
+    accent: 'light-green',
+    warn: 'red',
+    background: 'white'
+  },
+  login: {
+    primary: 'blue-grey',
+    accent: 'blue',
+    warn: 'red',
+    background: 'white'
+  }
 })
 
 /* eslint-disable no-new */

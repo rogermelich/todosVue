@@ -69,6 +69,7 @@ export default{
     setTimeout(function () {
       that.fetchData()
     }, 500)
+    this.$material.setCurrentTheme('todostokens')
   },
   methods: {
     fetchData: function () {

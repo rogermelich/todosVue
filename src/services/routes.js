@@ -1,13 +1,13 @@
 /**
  * Created by roger on 27/01/17.
  */
-import Todos from '../components/Todos'
-import Tokens from '../components/Tokens'
-import Profile from '../components/Profile'
-import Login from '../components/Login'
-import Vibrate from '../components/Vibrate'
+import Todos from '../components/Todos.vue'
+import Tokens from '../components/Tokens.vue'
+import Profile from '../components/Profile.vue'
+import Login from '../components/Login.vue'
+import Vibrate from '../components/Vibrate.vue'
 import DeviceInfo from '../components/DeviceInfo.vue'
-import NotFound from '../components/NotFound'
+import NotFound from '../components/NotFound.vue'
 
 const routes = [
   { path: '/',

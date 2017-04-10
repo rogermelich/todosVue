@@ -6,4 +6,9 @@
 <style>
 </style>
 <script>
+  export default {
+    created () {
+      this.$material.setCurrentTheme('notfound')
+    }
+  }
 </script>

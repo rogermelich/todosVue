@@ -83,6 +83,7 @@ export default{
       this.authorized = false
       this.$http.defaults.headers.common['Authorization'] = ''
     }
+    this.$material.setCurrentTheme('login')
   }
 }
 </script>

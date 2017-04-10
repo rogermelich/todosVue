@@ -66,6 +66,7 @@ export default{
   },
   created () {
     this.fetchUserProfile()
+    this.$material.setCurrentTheme('profile')
   },
   methods: {
     fetchUserProfile: function () {

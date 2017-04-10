@@ -7,11 +7,15 @@
 
 </style>
 <script>
+import auth from '../services/auth'
 export default {
   data () {
     return {
-      msg: 'Tokens Here'
+      msg: auth.getToken()
     }
+  },
+  created () {
+    this.$material.setCurrentTheme('todostokens')
   }
 }
 </script>
