@@ -68,7 +68,7 @@
     mixins: [profileMixin],
     data () {
       return {
-        avatar: 'https://s.gravatar.com/avatar/52fb84f3e6d38e577b9bef8c412b01a7?s=80',
+        avatar: '',
         name: null,
         email: null
       }
