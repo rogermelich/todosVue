@@ -6,7 +6,7 @@
             </md-avatar>
 
             <div class="md-title">{{ id }} {{ name }}</div>
-            <div class="md-subhead">{{ email}}</div>
+            <div class="md-subhead">{{ email }}</div>
         </md-card-header>
 
         <md-card-content>
@@ -32,6 +32,7 @@
                     <md-input v-model="updatedAt" placeholder="Date here"></md-input>
                 </md-input-container>
             </form>
+            <router-link tag="md-button" to="./Tokens" class="md-raised md-primary">Show Token</router-link>
         </md-card-content>
 
         <md-card-actions>
@@ -46,8 +47,9 @@
 <style>
 </style>
 <script>
-import todosVue from '../todosVue'
+import profileMixin from '../Mixins/ProfileMixin'
 export default{
+  mixins: [profileMixin],
   data () {
     return {
       avatar: 'https://s.gravatar.com/avatar/52fb84f3e6d38e577b9bef8c412b01a7?s=80',
@@ -59,32 +61,26 @@ export default{
       connecting: true
     }
   },
-  computed: {
-    avatarHash: function () {
-      return '52fb84f3e6d38e577b9bef8c412b01a7'
-    }
-  },
   created () {
-    this.fetchUserProfile()
     this.$material.setCurrentTheme('profile')
-  },
-  methods: {
-    fetchUserProfile: function () {
-      this.$http.get(todosVue.API_PROFILE_URL).then((response) => {
-        this.connecting = false
-        this.id = response.data.id
-        this.name = response.data.name
-        this.email = response.data.email
-        this.createdAt = response.data.created_at
-        this.updatedAt = response.data.updated_at
-      }, (response) => {
-        this.connecting = false
-        this.showConnectionError()
-      })
-    },
-    showConnectionError () {
-      this.$refs.connectionError.open()
-    }
   }
+//  methods: {
+//    fetchUserProfile: function () {
+//      this.$http.get(todosVue.API_PROFILE_URL).then((response) => {
+//        this.connecting = false
+//        this.id = response.data.id
+//        this.name = response.data.name
+//        this.email = response.data.email
+//        this.createdAt = response.data.created_at
+//        this.updatedAt = response.data.updated_at
+//      }, (response) => {
+//        this.connecting = false
+//        this.showConnectionError()
+//      })
+//    },
+//    showConnectionError () {
+//      this.$refs.connectionError.open()
+//    }
+//  }
 }
 </script>
