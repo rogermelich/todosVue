@@ -1,10 +1,10 @@
 <template>
-    <!--<div>-->
-        <!--<div><span class="md-headline">{{ msg }}</span></div>-->
-    <!--</div>-->
-    <md-card md-with-hover>
-        <md-card-content>
-            <md-spinner :md-size="150" md-indeterminate  class="md-accent" v-show="connecting" ></md-spinner>
+    <div>
+        <div align="center">
+            <md-spinner :md-size="300" md-indeterminate v-show="connecting"></md-spinner>
+        </div>
+        <md-card md-with-hover>
+            <md-card-content>
                 <md-input-container>
                     <md-icon>person</md-icon>
                     <label>Name</label>
@@ -23,9 +23,10 @@
                     <md-textarea v-model="token" placeholder="Your Token" disabled></md-textarea>
                 </md-input-container>
 
-            <router-link tag="md-button" to="./Profile" class="md-raised md-primary">Return To Profile</router-link>
-        </md-card-content>
-    </md-card>
+                <router-link tag="md-button" to="./Profile" class="md-raised md-primary">Return To Profile</router-link>
+            </md-card-content>
+        </md-card>
+    </div>
 </template>
 <style>
     .md-input-container textarea {
@@ -33,20 +34,20 @@
     }
 </style>
 <script>
-import profileMixin from '../Mixins/ProfileMixin'
-import auth from '../services/auth'
-export default {
-  mixins: [profileMixin],
-  data () {
-    return {
-      name: null,
-      email: null,
-      connecting: true,
-      token: auth.getToken()
+  import profileMixin from '../Mixins/ProfileMixin'
+  import auth from '../services/auth'
+  export default {
+    mixins: [profileMixin],
+    data () {
+      return {
+        name: null,
+        email: null,
+        connecting: true,
+        token: auth.getToken()
+      }
+    },
+    created () {
+      this.$material.setCurrentTheme('todostokens')
     }
-  },
-  created () {
-    this.$material.setCurrentTheme('todostokens')
   }
-}
 </script>

@@ -23,6 +23,9 @@ export default {
     }
   },
   created () {
-    this.fetchUserProfile()
+    var that = this
+    setTimeout(function () {
+      that.fetchUserProfile()
+    }, 2500)
   }
 }

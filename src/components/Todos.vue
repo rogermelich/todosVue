@@ -1,5 +1,8 @@
 <template>
     <div>
+        <div align="center">
+            <md-spinner :md-size="300" md-indeterminate v-show="connecting"></md-spinner>
+        </div>
         <md-table-card>
             <md-toolbar>
                 <h1 class="md-title">Todos</h1>
@@ -16,18 +19,19 @@
                 <md-table-header>
                     <md-table-row>
                         <md-table-head md-sort-by="name" md-tooltip="Task name">Name</md-table-head>
-                        <md-table-head md-sort-by="priority" md-numeric md-tooltip="The priority for task">Priority</md-table-head>
+                        <md-table-head md-sort-by="priority" md-numeric md-tooltip="The priority for task">Priority
+                        </md-table-head>
                         <md-table-head md-sort-by="done" md-numeric md-tooltip="Task is done?">Done</md-table-head>
                     </md-table-row>
                 </md-table-header>
 
-                <md-spinner :md-size="150" md-indeterminate  class="md-accent" v-show="connecting" ></md-spinner>
-
                 <md-table-body>
                     <md-table-row v-for="(todo, index) in todos" md-auto-select md-selection>
-                        <md-table-cell>{{ index +1 }} {{ todo.name }}</md-table-cell>
+                        <md-table-cell>{{ index + 1 }} {{ todo.name }}</md-table-cell>
                         <md-table-cell>{{ todo.priority }}</md-table-cell>
-                        <md-table-cell><md-switch v-model="todo.done" id="done" name="done"></md-switch></md-table-cell>
+                        <md-table-cell>
+                            <md-switch v-model="todo.done" id="done" name="done"></md-switch>
+                        </md-table-cell>
                     </md-table-row>
                 </md-table-body>
 
@@ -45,7 +49,7 @@
         </md-table-card>
 
         <md-snackbar md-position="bottom center" ref="connectionError" md-duration="4000">
-            <span>Connection error. Please reconnect using connect button!.</span>
+            <span>Connection error. Please check the connection</span>
         </md-snackbar>
 
     </div>
@@ -53,47 +57,47 @@
 <style>
 </style>
 <script>
-import todosVue from '../todosVue'
-export default{
-  data () {
-    return {
-      todos: [],
-      connecting: true,
-      total: 0,
-      perPage: 0,
-      page: 0
-    }
-  },
-  created () {
-    var that = this
-    setTimeout(function () {
-      that.fetchData()
-    }, 500)
-    this.$material.setCurrentTheme('todostokens')
-  },
-  methods: {
-    fetchData: function () {
-      return this.fetchPage(1)
+  import todosVue from '../todosVue'
+  export default{
+    data () {
+      return {
+        todos: [],
+        connecting: true,
+        total: 0,
+        perPage: 0,
+        page: 0
+      }
     },
-    fetchPage: function (page) {
-      this.$http.get(todosVue.API_TASK_URL + '?page=' + page).then((response) => {
-        this.connecting = false
-        this.todos = response.data.data
-        this.total = response.data.total
-        this.perPage = response.data.per_page
-        this.page = response.data.current_page
-      }, (response) => {
-        this.connecting = false
-        this.showConnectionError()
-        this.authorized = false
-      })
+    created () {
+      var that = this
+      setTimeout(function () {
+        that.fetchData()
+      }, 2500)
+      this.$material.setCurrentTheme('todostokens')
     },
-    showConnectionError () {
-      this.$refs.connectionError.open()
-    },
-    onPagination: function () {
-      console.log('pagination todo!')
+    methods: {
+      fetchData: function () {
+        return this.fetchPage(1)
+      },
+      fetchPage: function (page) {
+        this.$http.get(todosVue.API_TASK_URL + '?page=' + page).then((response) => {
+          this.connecting = false
+          this.todos = response.data.data
+          this.total = response.data.total
+          this.perPage = response.data.per_page
+          this.page = response.data.current_page
+        }, (response) => {
+          this.connecting = false
+          this.showConnectionError()
+          this.authorized = false
+        })
+      },
+      showConnectionError () {
+        this.$refs.connectionError.open()
+      },
+      onPagination: function () {
+        console.log('pagination todo!')
+      }
     }
   }
-}
 </script>
