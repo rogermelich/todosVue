@@ -2,7 +2,7 @@
     <md-card md-with-hover>
         <md-card-header>
             <md-avatar>
-                <img :src="avatar" alt="Roger Melich Curto">
+                <img :src="avatar" :alt="name">
             </md-avatar>
 
             <div class="md-title">{{ id }} {{ name }}</div>

@@ -13,7 +13,7 @@
                 <md-list class="md-transparent">
                     <md-list-item class="md-list-text-container">
                         <md-avatar class="md-large">
-                            <img :src="avatar" alt="Roger Melich Curto">
+                            <img :src="avatar" :alt="name">
                         </md-avatar>
                         <div class="md-list-text-container">
                             <span>{{ name }}</span>
