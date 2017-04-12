@@ -19,9 +19,8 @@
                 <md-table-header>
                     <md-table-row>
                         <md-table-head md-sort-by="name" md-tooltip="Task name">Name</md-table-head>
-                        <md-table-head md-sort-by="priority" md-numeric md-tooltip="The priority for task">Priority
-                        </md-table-head>
-                        <md-table-head md-sort-by="done" md-numeric md-tooltip="Task is done?">Done</md-table-head>
+                        <md-table-head md-sort-by="priority" md-tooltip="The priority for task">Priority</md-table-head>
+                        <md-table-head md-sort-by="done" md-tooltip="Task is done?">Done</md-table-head>
                     </md-table-row>
                 </md-table-header>
 
