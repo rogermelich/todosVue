@@ -39,19 +39,35 @@
                         <router-link exact to="/profile">Profile</router-link>
                     </md-list-item>
 
-                    <md-list-item @click="toggleLeftSidenav">
-                        <md-icon>perm_device_information</md-icon>
-                        <router-link exact to="/device-info">Device Info</router-link>
+                    <md-list-item>
+                        <md-icon>phonelink_setup</md-icon>
+                        <span>Mobile Components</span>
+                        <md-list-expand>
+                                <md-list>
+                                    <md-list-item @click="toggleLeftSidenav">
+                                        <md-icon>remove_from_queue</md-icon>
+                                        <router-link exact to="/cordova">Cordova</router-link>
+                                    </md-list-item>
+                                    <md-list-item @click="toggleLeftSidenav">
+                                        <md-icon>perm_device_information</md-icon>
+                                        <router-link exact to="/device-info">Device Info</router-link>
+                                    </md-list-item>
+                                    <md-list-item @click="toggleLeftSidenav">
+                                        <md-icon>alarm_on</md-icon>
+                                        <router-link exact to="/vibrate">Vibrate</router-link>
+                                    </md-list-item>
+                                </md-list>
+                        </md-list-expand>
                     </md-list-item>
 
                     <md-list-item @click="toggleLeftSidenav">
-                        <md-icon>alarm_on</md-icon>
-                        <router-link exact to="/vibrate">Vibrate</router-link>
+                        <md-icon>devices_other</md-icon>
+                        <router-link exact to="/login">Login/Logout</router-link>
                     </md-list-item>
 
                     <md-list-item @click="toggleLeftSidenav">
                         <md-icon>exit_to_app</md-icon>
-                        <router-link exact to="/login">Login/Logout</router-link>
+                        <router-link exact to="/">Exit App</router-link>
                     </md-list-item>
                 </md-list>
             </div>

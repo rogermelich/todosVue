@@ -41,6 +41,12 @@ Vue.material.registerTheme({
     warn: 'red',
     background: 'white'
   },
+  test: {
+    primary: 'orange',
+    accent: 'red',
+    warn: 'red',
+    background: 'white'
+  },
   todostokens: {
     primary: 'purple',
     accent: 'deep-purple',
