@@ -43,7 +43,7 @@
                     :md-page=page
                     md-label="Rows"
                     md-separator="of"
-                    :md-page-options="[5, 15, 25, 50]"
+                    :md-page-options="[15, 25, 50]"
                     @pagination="onPagination"></md-table-pagination>
 
         </md-table-card>
@@ -63,16 +63,16 @@
       return {
         todos: [],
         connecting: true,
-        total: 0,
-        perPage: 0,
-        page: 0
+        perPage: 15,
+        page: 1,
+        total: Number
       }
     },
     created () {
       var that = this
       setTimeout(function () {
         that.fetchData()
-      }, 2500)
+      }, 0)
       this.$material.setCurrentTheme('todostokens')
     },
     methods: {
@@ -83,9 +83,9 @@
         this.$http.get(todosVue.API_TASK_URL + '?page=' + page).then((response) => {
           this.connecting = false
           this.todos = response.data.data
-          this.total = response.data.total
           this.perPage = response.data.per_page
           this.page = response.data.current_page
+          this.total = response.data.total
         }, (response) => {
           this.connecting = false
           this.showConnectionError()
@@ -95,8 +95,9 @@
       showConnectionError () {
         this.$refs.connectionError.open()
       },
-      onPagination: function () {
-        console.log('pagination todo!')
+      onPagination (page) {
+        console.log(page.page)
+        this.fetchPage(page.page)
       }
     }
   }
