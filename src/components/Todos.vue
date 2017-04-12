@@ -72,7 +72,7 @@
       var that = this
       setTimeout(function () {
         that.fetchData()
-      }, 0)
+      }, 2500)
       this.$material.setCurrentTheme('todostokens')
     },
     methods: {
