@@ -1,8 +1,22 @@
 // Profile Mixin
 import todosVue from '../todosVue'
 import gravatar from 'gravatar'
+import VuePullRefresh from 'vue-pull-refresh'
 
 export default {
+  components: {
+    'vue-pull-refresh': VuePullRefresh
+  },
+  data () {
+    return {
+      PulltoRefreshConfig: {
+        errorLabel: 'Error Try again',
+        startLabel: 'Swipe to refresh',
+        readyLabel: 'Swipe to refresh',
+        loadingLabel: 'Reloading Components'
+      }
+    }
+  },
   methods: {
     avatarUrl: function () {
       return gravatar.url(this.email)
@@ -19,6 +33,15 @@ export default {
       }, (response) => {
         this.connecting = false
         this.showConnectionError()
+      })
+    },
+    onRefresh: function () {
+      return new Promise(function (resolve, reject) {
+        setTimeout(function () {
+          resolve()
+        }, 1000)
+      }).then(() => {
+        this.fetchUserProfile()
       })
     }
   },

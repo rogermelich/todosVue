@@ -1,35 +1,38 @@
 <template>
-    <div>
-        <div align="center">
-            <md-spinner :md-size="300" md-indeterminate v-show="connecting"></md-spinner>
+    <vue-pull-refresh :on-refresh="onRefresh" :config="PulltoRefreshConfig">
+        <div>
+            <div align="center">
+                <md-spinner :md-size="300" md-indeterminate v-show="connecting"></md-spinner>
+            </div>
+            <md-card md-with-hover>
+                <md-card-content>
+                    <md-input-container>
+                        <md-icon>person</md-icon>
+                        <label>Name</label>
+                        <md-input v-model="name" placeholder="Your Name" disabled></md-input>
+                    </md-input-container>
+
+                    <md-input-container>
+                        <md-icon>mail</md-icon>
+                        <label>Email</label>
+                        <md-input v-model="email" placeholder="Your Email" disabled></md-input>
+                    </md-input-container>
+
+                    <md-input-container>
+                        <md-icon>lock</md-icon>
+                        <label>Your Token</label>
+                        <md-textarea v-model="token" placeholder="Your Token" disabled></md-textarea>
+                    </md-input-container>
+
+                    <router-link tag="md-button" to="./Profile" class="md-raised md-primary">Return To Profile
+                    </router-link>
+                </md-card-content>
+                <md-snackbar md-position="bottom center" ref="connectionError" md-duration="4000">
+                    <span>Connection error. Please reconnect using connect button!.</span>
+                </md-snackbar>
+            </md-card>
         </div>
-        <md-card md-with-hover>
-            <md-card-content>
-                <md-input-container>
-                    <md-icon>person</md-icon>
-                    <label>Name</label>
-                    <md-input v-model="name" placeholder="Your Name" disabled></md-input>
-                </md-input-container>
-
-                <md-input-container>
-                    <md-icon>mail</md-icon>
-                    <label>Email</label>
-                    <md-input v-model="email" placeholder="Your Email" disabled></md-input>
-                </md-input-container>
-
-                <md-input-container>
-                    <md-icon>lock</md-icon>
-                    <label>Your Token</label>
-                    <md-textarea v-model="token" placeholder="Your Token" disabled></md-textarea>
-                </md-input-container>
-
-                <router-link tag="md-button" to="./Profile" class="md-raised md-primary">Return To Profile</router-link>
-            </md-card-content>
-            <md-snackbar md-position="bottom center" ref="connectionError" md-duration="4000">
-                <span>Connection error. Please reconnect using connect button!.</span>
-            </md-snackbar>
-        </md-card>
-    </div>
+    </vue-pull-refresh>
 </template>
 <style>
     .md-input-container textarea {
