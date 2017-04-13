@@ -17,10 +17,10 @@
     "gravatar": "^1.6.0",
     "material-design-icons": "^3.0.1",
     "roboto-fontface": "^0.7.0",
-    "vue": "^2.1.0",
+    "vue": "^2.2.6",
     "vue-material": "^0.7.1",
     "vue-pull-refresh": "^0.2.0",
-    "vue-router": "^2.2.0"
+    "vue-router": "^2.4.0"
   },
   "devDependencies": {
     "autoprefixer": "^6.4.0",
