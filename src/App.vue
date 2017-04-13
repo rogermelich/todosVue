@@ -67,7 +67,7 @@
 
                     <md-list-item @click="toggleLeftSidenav">
                         <md-icon>exit_to_app</md-icon>
-                        <router-link exact to="/">Exit App</router-link>
+                        <router-link exact to="/exit">Exit App</router-link>
                     </md-list-item>
                 </md-list>
             </div>
