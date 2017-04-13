@@ -1,14 +1,14 @@
 <template>
-    <div class="phone-viewport">
+    <div class="container">
         <md-toolbar>
-            <md-button class="md-icon-button" @click="toggleLeftSidenav">
+            <md-button class="md-icon-button" @click.native="toggleLeftSidenav">
                 <md-icon>menu</md-icon>
             </md-button>
 
             <h2 class="md-title">Todos</h2>
         </md-toolbar>
 
-        <md-sidenav class="main-sidebar md-left" ref="leftSidenav" @open="open('Left')" @close="close('Left')">
+        <md-sidenav class="main-sidebar md-left" md-swipeable ref="leftSidenav" @open="open('Left')" @close="close('Left')">
             <md-toolbar class="md-account-header">
                 <md-list class="md-transparent">
                     <md-list-item class="md-list-text-container">
@@ -24,17 +24,17 @@
             </md-toolbar>
             <div class="phone-viewport">
                 <md-list class="md-dense">
-                    <md-list-item @click="toggleLeftSidenav">
+                    <md-list-item @click.native="toggleLeftSidenav">
                         <md-icon>done_all</md-icon>
                         <router-link exact to="/todos">Todos</router-link>
                     </md-list-item>
 
-                    <md-list-item @click="toggleLeftSidenav">
+                    <md-list-item @click.native="toggleLeftSidenav">
                         <md-icon>https</md-icon>
                         <router-link exact to="/tokens">Tokens</router-link>
                     </md-list-item>
 
-                    <md-list-item @click="toggleLeftSidenav">
+                    <md-list-item @click.native="toggleLeftSidenav">
                         <md-icon>account_circle</md-icon>
                         <router-link exact to="/profile">Profile</router-link>
                     </md-list-item>
@@ -44,15 +44,15 @@
                         <span>Mobile Components</span>
                         <md-list-expand>
                                 <md-list>
-                                    <md-list-item @click="toggleLeftSidenav">
+                                    <md-list-item @click.native="toggleLeftSidenav">
                                         <md-icon>remove_from_queue</md-icon>
                                         <router-link exact to="/cordova">Cordova</router-link>
                                     </md-list-item>
-                                    <md-list-item @click="toggleLeftSidenav">
+                                    <md-list-item @click.native="toggleLeftSidenav">
                                         <md-icon>perm_device_information</md-icon>
                                         <router-link exact to="/device-info">Device Info</router-link>
                                     </md-list-item>
-                                    <md-list-item @click="toggleLeftSidenav">
+                                    <md-list-item @click.native="toggleLeftSidenav">
                                         <md-icon>alarm_on</md-icon>
                                         <router-link exact to="/vibrate">Vibrate</router-link>
                                     </md-list-item>
@@ -60,12 +60,12 @@
                         </md-list-expand>
                     </md-list-item>
 
-                    <md-list-item @click="toggleLeftSidenav">
+                    <md-list-item @click.native="toggleLeftSidenav">
                         <md-icon>devices_other</md-icon>
                         <router-link exact to="/login">Login/Logout</router-link>
                     </md-list-item>
 
-                    <md-list-item @click="toggleLeftSidenav">
+                    <md-list-item @click.native="toggleLeftSidenav">
                         <md-icon>exit_to_app</md-icon>
                         <router-link exact to="/exit">Exit App</router-link>
                     </md-list-item>
@@ -93,12 +93,6 @@
     methods: {
       toggleLeftSidenav () {
         this.$refs.leftSidenav.toggle()
-      },
-      open (ref) {
-        console.log('Opened: ' + ref)
-      },
-      close (ref) {
-        console.log('Closed: ' + ref)
       }
     }
   }
