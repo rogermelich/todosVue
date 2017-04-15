@@ -48,7 +48,7 @@
                                     <router-link @click.native="toggleLeftSidenav" exact to="/device-info"><md-icon>perm_device_information</md-icon><p>Device Info</p></router-link>
                                 </md-list-item>
                                 <md-list-item class="md-inset">
-                                    <router-link @click.native="toggleLeftSidenav" exact to="/vibrate"><md-icon>alarm_on</md-icon><p>Vibrate</p></router-link>
+                                    <router-link @click.native="toggleLeftSidenav" exact to="/vibrate"><md-icon>alarm_on</md-icon><p>Vibrate/FastClick</p></router-link>
                                 </md-list-item>
                             </md-list>
                         </md-list-expand>
