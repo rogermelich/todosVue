@@ -40,7 +40,7 @@
                             <md-input v-model="updatedAt" placeholder="Date here"></md-input>
                         </md-input-container>
                     </form>
-                    <router-link tag="md-button" to="./Tokens" class="md-raised md-primary">Show Token</router-link>
+                    <md-button href="/tokens" class="md-raised md-primary">Show Token</md-button>
                 </md-card-content>
 
                 <md-card-actions>

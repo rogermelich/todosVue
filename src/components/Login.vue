@@ -4,8 +4,8 @@
             <div class="md-title">Login</div>
         </md-card-header>
         <md-card-content>
-            <md-button class="md-raised md-primary" @click="login" v-show="!authorized">Login</md-button>
-            <md-button class="md-raised md-primary" @click="initLogout" v-show="authorized">Logout</md-button>
+            <md-button class="md-raised md-primary" @click.native="login" v-show="!authorized">Login</md-button>
+            <md-button class="md-raised md-primary" @click.native="initLogout" v-show="authorized">Logout</md-button>
         </md-card-content>
 
         <md-dialog-confirm
@@ -21,69 +21,76 @@
 <style>
 </style>
 <script>
-import todosVue from '../todosVue'
-import auth from '../services/auth'
-export default{
-  data () {
-    return {
-      authorized: false
-    }
-  },
-  methods: {
-    extractToken: function (hash) {
-      return hash.match(/#(?:access_token)=([\S\s]*?)&/)[1]
-    },
-    login: function () {
-      query = {
-        client_id: todosVue.OAUTH_CLIENT_ID,
-        redirect_uri: todosVue.OAUTH_REDIRECT_URI,
-        response_type: 'token',
-        scope: ''
+  import todosVue from '../todosVue'
+  import auth from '../services/auth'
+  export default{
+    data () {
+      return {
+        authorized: false
       }
-      var query = window.querystring.stringify(query)
-      if (window.cordova && window.device.platform !== 'browser') {
-        var oAuthWindow = window.cordova.InAppBrowser.open(todosVue.OAUTH_SERVER_URL + query, '_blank', 'location=yes')
-        var login = this
-        oAuthWindow.addEventListener('loadstart', function (e) {
-          var url = e.url
-          var hash = url.split('#')[1]
-          var accessToken = login.extractToken('#' + String(hash))
-          if (accessToken) {
-            auth.saveToken(accessToken)
-            login.authorized = true
-            oAuthWindow.close()
-          }
-        })
+    },
+    methods: {
+      extractToken: function (hash) {
+        return hash.match(/#(?:access_token)=([\S\s]*?)&/)[1]
+      },
+      login: function () {
+        query = {
+          client_id: todosVue.OAUTH_CLIENT_ID,
+          redirect_uri: todosVue.OAUTH_REDIRECT_URI,
+          response_type: 'token',
+          scope: ''
+        }
+        var query = window.querystring.stringify(query)
+        if (window.cordova && window.device.platform !== 'browser') {
+          var oAuthWindow = window.cordova.InAppBrowser.open(todosVue.OAUTH_SERVER_URL + query, '_blank', 'location=yes')
+
+          var login = this
+          oAuthWindow.addEventListener('loadstart', function (e) {
+            var url = e.url
+            var hash = null
+            if (url.split('#')[1]) {
+              hash = url.split('#')[1]
+            }
+            if (hash) {
+              var accessToken = login.extractToken('#' + String(hash))
+              if (accessToken) {
+                auth.saveToken(accessToken)
+                login.authorized = true
+                oAuthWindow.close()
+              }
+            }
+          })
+        } else {
+          window.location.replace(todosVue.OAUTH_SERVER_URL + query)
+        }
+      },
+      initLogout: function () {
+        this.openDialog('sureToLogout')
+      },
+      openDialog: function (ref) {
+        this.$refs[ref].open()
+      },
+      logout: function () {
+        window.localStorage.removeItem(todosVue.STORAGE_TOKEN_KEY)
+        this.authorized = false
+      },
+      onCloseSureToLogout: function (type) {
+        if (type === 'ok') this.logout()
+      }
+    },
+    created () {
+      console.log(window.cordova)
+      if (document.location.hash) var token = this.extractToken(document.location.hash)
+      if (token) auth.saveToken(token)
+      if (this.token == null) this.token = auth.getToken()
+      if (this.token) {
+        this.authorized = true
+        this.$http.defaults.headers.common['Authorization'] = auth.getAuthHeader()
       } else {
-        window.location.replace(todosVue.OAUTH_SERVER_URL + query)
+        this.authorized = false
+        this.$http.defaults.headers.common['Authorization'] = ''
       }
-    },
-    initLogout: function () {
-      this.openDialog('sureToLogout')
-    },
-    openDialog: function (ref) {
-      this.$refs[ref].open()
-    },
-    logout: function () {
-      window.localStorage.removeItem(todosVue.STORAGE_TOKEN_KEY)
-      this.authorized = false
-    },
-    onCloseSureToLogout: function (type) {
-      if (type === 'ok') this.logout()
+      this.$material.setCurrentTheme('login')
     }
-  },
-  created () {
-    if (document.location.hash) var token = this.extractToken(document.location.hash)
-    if (token) auth.saveToken(token)
-    if (this.token == null) this.token = auth.getToken()
-    if (this.token) {
-      this.authorized = true
-      this.$http.defaults.headers.common['Authorization'] = auth.getAuthHeader()
-    } else {
-      this.authorized = false
-      this.$http.defaults.headers.common['Authorization'] = ''
-    }
-    this.$material.setCurrentTheme('login')
   }
-}
 </script>

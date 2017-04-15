@@ -8,7 +8,7 @@
             <h2 class="md-title">Todos</h2>
         </md-toolbar>
         <div class="container"></div>
-        <md-sidenav class="md-left" md-swipeable ref="leftSidenav" @open="open('Left')" @close="close('Left')">
+        <md-sidenav class="md-left" md-swipeable ref="leftSidenav">
             <md-toolbar class="md-account-header">
                 <md-list class="md-transparent">
                     <md-list-item class="md-list-text-container">
@@ -85,12 +85,6 @@
     methods: {
       toggleLeftSidenav () {
         this.$refs['leftSidenav'].toggle()
-      },
-      open (ref) {
-        console.log('Opened: ' + ref)
-      },
-      close (ref) {
-        console.log('Closed: ' + ref)
       }
     }
   }

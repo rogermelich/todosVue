@@ -24,8 +24,8 @@
                         <md-textarea v-model="token" placeholder="Your Token" disabled></md-textarea>
                     </md-input-container>
 
-                    <router-link tag="md-button" to="./Profile" class="md-raised md-primary">Return To Profile
-                    </router-link>
+                    <md-button href="/profile" class="md-raised md-primary">Return To Profile</md-button>
+
                 </md-card-content>
                 <md-snackbar md-position="bottom center" ref="connectionError" md-duration="4000">
                     <span>Connection error. Please reconnect using connect button!.</span>
