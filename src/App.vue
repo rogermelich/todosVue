@@ -64,9 +64,11 @@
                 </md-list>
             </div>
         </md-sidenav>
-        <router-view>
-            <!--Per veure msg-->
-        </router-view>
+        <transition name="bounce"
+                    enter-active-class="animated bounceIn"
+                    leave-active-class="animated bounceOut">
+            <router-view></router-view>
+        </transition>
     </div>
 </template>
 
