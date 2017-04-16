@@ -75,6 +75,7 @@
 <script>
   import profileMixin from './Mixins/ProfileMixin'
   export default {
+    name: 'app',
     mixins: [profileMixin],
     data () {
       return {
@@ -83,8 +84,13 @@
         email: null
       }
     },
-    name: 'app',
+    created () {
+      document.addEventListener('deviceready', this.onDeviceReady, false)
+    },
     methods: {
+      onDeviceReady: function () {
+        console.log('Working on platform: ' + window.device.platform)
+      },
       toggleLeftSidenav () {
         this.$refs['leftSidenav'].toggle()
       }

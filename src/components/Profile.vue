@@ -40,15 +40,24 @@
                             <md-input v-model="updatedAt" placeholder="Date here"></md-input>
                         </md-input-container>
                     </form>
-                    <md-button class="md-raised md-primary"><router-link exact to="/tokens" class="md-button">Show Token</router-link></md-button>
+                    <md-button class="md-raised md-primary">
+                        <router-link exact to="/tokens" class="md-button">Show Token</router-link>
+                    </md-button>
                 </md-card-content>
 
                 <md-card-actions>
+                    <md-button v-show="onDeviceReady" @click.native="onDeviceReady">
+                        <md-icon>save</md-icon>
+                        <span class="md-subheading">Save User Phone</span>
+                    </md-button>
                     <md-button>Edit</md-button>
                     <md-button>Delete</md-button>
                 </md-card-actions>
                 <md-snackbar md-position="bottom center" ref="connectionError" md-duration="4000">
                     <span>Connection error. Please reconnect using connect button!.</span>
+                </md-snackbar>
+                <md-snackbar md-position="bottom center" ref="contactsError" md-duration="4000">
+                    <span>Contacts API not supported!</span>
                 </md-snackbar>
             </md-card>
         </div>
@@ -68,11 +77,33 @@
         email: null,
         createdAt: null,
         updatedAt: null,
-        connecting: true
+        connecting: true,
+        phone: 666666666
       }
     },
     created () {
+      document.addEventListener('deviceready', this.onDeviceReady, false)
       this.$material.setCurrentTheme('profile')
+    },
+    beforeDestroy () {
+      document.removeEventListener('deviceready', this.onBeforeDestroy, false)
+    },
+    methods: {
+      onDeviceReady: function () {
+        if (!navigator.contacts) {
+          this.$refs.contactsError.open()
+        }
+        var contact = navigator.contacts.create()
+        this.name = contact.name
+        this.name = contact.displayName
+        this.name = contact.nickName
+        this.email = contact.emails
+        this.phone = contact.phoneNumbers
+        contact.save()
+      },
+      onBeforeDestroy () {
+        console.log('Device onBeforeDestroy!')
+      }
     }
   }
 </script>
