@@ -24,7 +24,8 @@
                         <md-textarea v-model="token" placeholder="Your Token" disabled></md-textarea>
                     </md-input-container>
 
-                    <md-button href="profile" class="md-raised md-primary">Return To Profile</md-button>
+                    <md-button class="md-raised md-primary"><router-link exact to="/profile" class="md-button">Return to Profile</router-link></md-button>
+
 
                 </md-card-content>
                 <md-snackbar md-position="bottom center" ref="connectionError" md-duration="4000">
