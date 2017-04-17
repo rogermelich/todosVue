@@ -44,7 +44,7 @@
                         <router-link exact to="/tokens" class="md-button">Show Token</router-link>
                     </md-button>
                 </md-card-content>
-                <md-card-content v-show="onDeviceReady">
+                <md-card-content>
                     <md-input-container>
                         <md-icon>location_on</md-icon>
                         <label>Position Latitude</label>
@@ -59,11 +59,11 @@
                 </md-card-content>
 
                 <md-card-actions>
-                    <md-button v-show="onDeviceReady" @click.native="onSaveUserPhone">
+                    <md-button @click.native="onSaveUserPhone">
                         <md-icon>save</md-icon>
                         <span class="md-subheading">Get Contact</span>
                     </md-button>
-                    <md-button v-show="onDeviceReady" @click.native="onSaveLocation">
+                    <md-button @click.native="onSaveLocation">
                         <md-icon>location_on</md-icon>
                         <span class="md-subheading">Get Location</span>
                     </md-button>
@@ -114,51 +114,51 @@
     methods: {
       onDeviceReady: function () {
         console.log('Device Ready')
+      },
+      onSaveUserPhone: function () {
+        if (!navigator.contacts) {
+          this.$refs.contactsError.open()
+        }
+        navigator.notification.confirm(
+          'Do You Want Save',
+          this.onConfirmSaveUser,
+          'Save User Phone',
+          'OK,Cancel'
+        )
+      },
+      onConfirmSaveUser (button) {
+        if (button === 1) {
+          var contact = navigator.contacts.create()
+          contact.name = this.name
+          contact.displayName = this.name
+          contact.emails = this.email
+          contact.phoneNumbers = this.phone
+          contact.save()
+        }
+      },
+      onSaveLocation: function () {
+        if (!navigator.geolocation) {
+          this.$refs.geolocationError.open()
+        }
+        navigator.notification.confirm(
+          'Do You Want Save',
+          this.onConfirmSaveLocation,
+          'Save Geolocation',
+          'OK,Cancel'
+        )
+      },
+      onConfirmSaveLocation (button) {
+        if (button === 1) {
+          navigator.geolocation.getCurrentPosition(
+            function (position) {
+              auth.saveLatitude(position.coords.latitude)
+              auth.saveLongitude(position.coords.longitude)
+            })
+        }
+      },
+      onBeforeDestroy () {
+        console.log('Device onBeforeDestroy!')
       }
-    },
-    onSaveUserPhone: function () {
-      if (!navigator.contacts) {
-        this.$refs.contactsError.open()
-      }
-      navigator.notification.confirm(
-        'Do You Want Save',
-        this.onConfirmSaveUser,
-        'Save User Phone',
-        'OK,Cancel'
-      )
-    },
-    onConfirmSaveUser (button) {
-      if (button === 1) {
-        var contact = navigator.contacts.create()
-        contact.name = this.name
-        contact.displayName = this.name
-        contact.emails = this.email
-        contact.phoneNumbers = this.phone
-        contact.save()
-      }
-    },
-    onSaveLocation: function () {
-      if (!navigator.geolocation) {
-        this.$refs.geolocationError.open()
-      }
-      navigator.notification.confirm(
-        'Do You Want Save',
-        this.onConfirmSaveLocation,
-        'Save Geolocation',
-        'OK,Cancel'
-      )
-    },
-    onConfirmSaveLocation (button) {
-      if (button === 1) {
-        navigator.geolocation.getCurrentPosition(
-          function (position) {
-            auth.saveLatitude(position.coords.latitude)
-            auth.saveLongitude(position.coords.longitude)
-          })
-      }
-    },
-    onBeforeDestroy () {
-      console.log('Device onBeforeDestroy!')
     }
   }
 </script>

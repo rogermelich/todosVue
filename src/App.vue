@@ -81,10 +81,18 @@
       return {
         avatar: '',
         name: null,
-        email: null
+        email: null,
+        onDeviceReady: false
       }
     },
+    created () {
+      console.log(window.location.href)
+      document.addEventListener('deviceready', this.onDeviceReady, false)
+    },
     methods: {
+      onDeviceReady () {
+        console.log('Working on platform: ' + window.device.platform)
+      },
       toggleLeftSidenav () {
         this.$refs['leftSidenav'].toggle()
       }

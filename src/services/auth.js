@@ -44,11 +44,11 @@ export default {
   getLongitude () {
     return window.localStorage.getItem(todosVue.LONGITUDE)
   },
-  saveLatitude (postion) {
-    return window.localStorage.setItem(todosVue.LATITUDE, postion)
+  saveLatitude (position) {
+    return window.localStorage.setItem(todosVue.LATITUDE, position)
   },
-  saveLongitude (postion) {
-    return window.localStorage.setItem(todosVue.LONGITUDE, postion)
+  saveLongitude (position) {
+    return window.localStorage.setItem(todosVue.LONGITUDE, position)
   },
   onChange () {}
 }
