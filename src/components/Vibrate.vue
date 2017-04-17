@@ -1,24 +1,20 @@
 <template>
     <div>
-        <md-button class="md-raised md-primary" @click.native="onDeviceReady">300ms delay</md-button>
+        <div class="md-button" @touchend="countTouch(true)" @click="countClick(true)">With delay</div>
+        <md-list>
+            <p v-show="delayHasTried">{{ delayTime }}ms.</p>
+        </md-list>
         <md-button class="md-raised md-primary" @click.native="onVibration">Vibrate</md-button>
-
-        <md-dialog-alert
-                :md-content="alert.content"
-                :md-ok-text="alert.ok"
-                ref="fastclick">
-        </md-dialog-alert>
     </div>
 </template>
 <script>
-  import FastClick from 'fastclick'
   export default {
     data () {
       return {
-        alert: {
-          content: 'Activated FastClick',
-          ok: 'Ok'
-        }
+        delayHasTried: null,
+        delayTime: null,
+        teTime: null,
+        cTime: null
       }
     },
     created () {
@@ -30,20 +26,27 @@
     },
     methods: {
       onDeviceReady: function () {
-        FastClick.attach(document.body)
-        this.openDialog('fastclick')
+        console.log('Device Ready')
       },
       onVibration: function () {
         navigator.vibrate([1000, 1000, 1000, 1000, 1000, 500, 1000, 500])
       },
-      openDialog (ref) {
-        this.$refs[ref].open()
-      },
-      closeDialog (ref) {
-        this.$refs[ref].close()
-      },
       onBeforeDestroy () {
         console.log('Device onBeforeDestroy!')
+      },
+      countTouch: function (hasDelay) {
+        this.delayHasTried = true
+        this.teTime = Date.now()
+        if (!hasDelay) {
+          this.delayTime = this.cTime - this.teTime
+        }
+      },
+      countClick: function (hasDelay) {
+        this.delayHasTried = true
+        this.cTime = Date.now()
+        if (hasDelay) {
+          this.delayTime = this.cTime - this.teTime
+        }
       }
     }
   }
