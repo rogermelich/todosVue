@@ -29,7 +29,16 @@
         console.log('Device Ready')
       },
       onVibration: function () {
-        navigator.vibrate([1000, 1000, 1000, 1000, 1000, 500, 1000, 500])
+        if (navigator.vibrate) {
+          navigator.vibrate([1000, 1000, 1000, 1000, 1000, 500, 1000, 500])
+        } else {
+          navigator.notification.alert(
+            'Vibration API not supported from device',    // message
+            null,                                        // callback
+            'Vibration Plugin',                         // title
+            'OK'
+          )
+        }
       },
       onBeforeDestroy () {
         console.log('Device onBeforeDestroy!')
