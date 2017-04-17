@@ -84,13 +84,7 @@
         email: null
       }
     },
-    created () {
-      document.addEventListener('deviceready', this.onDeviceReady, false)
-    },
     methods: {
-      onDeviceReady: function () {
-        console.log('Working on platform: ' + window.device.platform)
-      },
       toggleLeftSidenav () {
         this.$refs['leftSidenav'].toggle()
       }

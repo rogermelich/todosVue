@@ -1,4 +1,6 @@
 const todosVue = {
+  // LATITUDE: 'latitude',
+  // LONGITUDE: 'longitude',
   STORAGE_TOKEN_KEY: 'token',
   OAUTH_CLIENT_ID: 1,
   OAUTH_REDIRECT_URI: 'http://localhost:8095/login',

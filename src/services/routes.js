@@ -12,6 +12,10 @@ import Cordova from '../components/Cordova'
 import Exit from '../components/Exit'
 
 const routes = [
+  { path: '/android_asset/www/index.html',
+    component: Todos,
+    meta: { auth: true }
+  },
   { path: '',
     component: Todos,
     meta: { auth: true }

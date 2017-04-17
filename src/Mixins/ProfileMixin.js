@@ -19,7 +19,7 @@ export default {
   },
   methods: {
     avatarUrl: function () {
-      return gravatar.url(this.email)
+      return 'http:' + gravatar.url(this.email)
     },
     fetchUserProfile: function () {
       this.$http.get(todosVue.API_PROFILE_URL).then((response) => {
