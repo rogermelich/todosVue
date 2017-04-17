@@ -1,6 +1,6 @@
 <template>
     <div>
-        <div class="md-button" @touchend="countTouch(true)" @click="countClick(true)">With delay</div>
+        <div class="md-button" @touchend="countTouch(true)" @click="countClick(true)">Delay</div>
         <md-list>
             <p v-show="delayHasTried">{{ delayTime }}ms.</p>
         </md-list>

@@ -29,6 +29,12 @@
                         </md-input-container>
 
                         <md-input-container>
+                            <md-icon>phone</md-icon>
+                            <label>Phone Number</label>
+                            <md-input v-model="phone" placeholder="Put your Phone here"></md-input>
+                        </md-input-container>
+
+                        <md-input-container>
                             <md-icon>date_range</md-icon>
                             <label>Created at</label>
                             <md-input v-model="createdAt" placeholder="Date here"></md-input>
@@ -67,6 +73,10 @@
                         <md-icon>location_on</md-icon>
                         <span class="md-subheading">Get Location</span>
                     </md-button>
+                    <md-button @click.native="onChangeAvatar">
+                        <md-icon>assignment_ind</md-icon>
+                        <span class="md-subheading">Change Avatar</span>
+                    </md-button>
                     <!--<md-button>Edit</md-button>-->
                     <!--<md-button>Delete</md-button>-->
                 </md-card-actions>
@@ -78,6 +88,12 @@
                 </md-snackbar>
                 <md-snackbar md-position="bottom center" ref="geolocationError" md-duration="4000">
                     <span>Geolocation API not supported!</span>
+                </md-snackbar>
+                <md-snackbar md-position="bottom center" ref="cameraError" md-duration="4000">
+                    <span>Camera API not supported!</span>
+                </md-snackbar>
+                <md-snackbar md-position="bottom center" ref="ChangeAvatar" md-duration="4000">
+                    <span>Your avatar was changed successfully!</span>
                 </md-snackbar>
             </md-card>
         </div>
@@ -132,7 +148,9 @@
           contact.name = this.name
           contact.displayName = this.name
           contact.emails = this.email
-          contact.phoneNumbers = this.phone
+          var phoneNumbers = []
+          phoneNumbers[0] = new window.ContactField('mobile', this.phone, true)
+          contact.phoneNumbers = phoneNumbers
           contact.save()
         }
       },
@@ -155,6 +173,32 @@
               auth.saveLongitude(position.coords.longitude)
             })
         }
+      },
+      onChangeAvatar: function () {
+        if (!navigator.camera) {
+          this.$refs.cameraError.open()
+        }
+        var options = {
+          quality: 50,
+          destinationType: window.Camera.DestinationType.DATA_URL,
+          sourceType: 1,      // 0:Photo Library, 1=Camera, 2=Saved Album
+          encodingType: 0     // 0=JPG 1=PNG
+        }
+        var avatar = this
+        navigator.camera.getPicture(
+          function (imgData) {
+            avatar.avatar = 'data:image/jpeg;base64,' + imgData
+            avatar.openDialog('ChangeAvatar')
+          },
+          function () {
+            navigator.notification.alert(
+              'Error Change Avatar',    // message
+              null,                     // callback
+              'Avatar',                 // title
+              'OK'
+            )
+          }, options)
+        return false
       },
       onBeforeDestroy () {
         console.log('Device onBeforeDestroy!')
