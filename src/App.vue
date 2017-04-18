@@ -37,7 +37,7 @@
                     </md-list-item>
 
                     <md-list-item >
-                        <router-link @click.native="toggleLeftSidenav" exact to="/notifications"><md-icon>profile</md-icon><p>Notifiactions</p></router-link>
+                        <router-link @click.native="toggleLeftSidenav" exact to="/notifications"><md-icon>notifications</md-icon><p>Notifiactions</p></router-link>
                     </md-list-item>
 
                     <md-list-item>
