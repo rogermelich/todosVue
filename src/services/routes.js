@@ -17,6 +17,10 @@ const routes = [
     component: Todos,
     meta: { auth: true }
   },
+  { path: '/index.html',
+    component: Todos,
+    meta: { auth: true }
+  },
   { path: '',
     component: Todos,
     meta: { auth: true }
