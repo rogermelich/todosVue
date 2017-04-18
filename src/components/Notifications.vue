@@ -12,26 +12,22 @@
 <style>
 </style>
 <script>
-//  import todosVue from '../todosVue'
-  export default{
-//    props: {
-//      notifications: {
-//        type: Array,
-//        default: function () {
-//          return []
-//        }
-//      }
-//    }
-    data () {
-      return {
-        notifications: []
-      }
-    },
-    created () {
-      console.log(this.$route.params)
-      if (this.$route.params) {
-        this.notifications = this.$route.params
-      }
-    }
-  }
+ export default {
+   created () {
+       document.addEventListener('deviceready', this.onDeviceReady, false)
+   },
+   methods: {
+       onDeviceReady  () {
+           notifications.enable()
+       }
+   },
+   props: {
+     notifications: {
+       type: Array,
+       default: function () {
+         return []
+       }
+     }
+   }
+ }
 </script>

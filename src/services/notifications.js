@@ -1,7 +1,6 @@
 /* globals localStorage */
 
 import todosVue from '../todosVue'
-import Form from 'acacha-forms'
 import app from '../App.vue'
 import router from './router'
 
@@ -46,16 +45,6 @@ export default {
         // Save new registration ID
         localStorage.setItem('registrationId', data.registrationId)
         // Post registrationId to your app server as the value has changed
-        let form = new Form({'registration_id': data.registrationId})
-
-        form.post(todosVue.REGISTER_GCM_TOKEN_URL)
-          .then(response => {
-            console.log('GCM token registered OK!')
-          })
-          .catch(error => {
-            console.log('And error ocurred adding GCM token to backend!')
-            console.log(error)
-          })
       }
     })
   },

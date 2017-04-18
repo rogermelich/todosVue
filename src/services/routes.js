@@ -39,9 +39,6 @@ const routes = [
   },
   { path: '/notifications',
     component: Notifications,
-    props: (route) => ({
-      params: route.params.notifications
-    }),
     meta: { auth: true }
   },
   { path: '/cordova',
