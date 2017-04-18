@@ -6,10 +6,12 @@ const todosVue = {
   OAUTH_REDIRECT_URI: 'http://localhost:8095/login',
   OAUTH_SERVER_URL: 'http://rmelich.todosbackend.2dam.acacha.org:8080/oauth/authorize?',
   API_TASK_URL: 'http://rmelich.todosbackend.2dam.acacha.org:8080/api/v1/task',
-  API_PROFILE_URL: 'http://rmelich.todosbackend.2dam.acacha.org:8080/api/v1/user'
-  // OAUTH_SERVER_URL: 'http://localhost:8080/oauth/authorize?',
-  // API_TASK_URL: 'http://localhost:8080/api/v1/task',
-  // API_PROFILE_URL: 'http://localhost:8080/api/v1/user'
+  API_PROFILE_URL: 'http://rmelich.todosbackend.2dam.acacha.org:8080/api/v1/user',
+  ANDROID_SENDER_ID: '221272724270',
+  // REGISTER_GCM_TOKEN_URL: 'http://rmelich.todosbackend.2dam.acacha.org:8080/api/v1/user/gcmtoken',
+  // GET_MESSAGES_URL: 'http://rmelich.todosbackend.2dam.acacha.org:8080/user/messages'
+  REGISTER_GCM_TOKEN_URL: 'http://localhost:8080/api/v1/user/gcmtoken',
+  GET_MESSAGES_URL: 'http://localhost:8080/user/messages'
 }
 
 export default todosVue

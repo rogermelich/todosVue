@@ -15,6 +15,7 @@ import querystring from 'querystring'
 import auth from './services/auth'
 
 import 'fastclick/lib/fastclick'
+import 'animate.css/animate.css'
 
 window.axios = Axios
 window.querystring = querystring

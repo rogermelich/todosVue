@@ -36,6 +36,10 @@
                         <router-link @click.native="toggleLeftSidenav" exact to="/profile"><md-icon>account_circle</md-icon><p>Profile</p></router-link>
                     </md-list-item>
 
+                    <md-list-item >
+                        <router-link @click.native="toggleLeftSidenav" exact to="/notifications"><md-icon>profile</md-icon><p>Notifiactions</p></router-link>
+                    </md-list-item>
+
                     <md-list-item>
                         <md-icon>phonelink_setup</md-icon>
                         <span>Mobile Components</span>
@@ -74,6 +78,7 @@
 
 <script>
   import profileMixin from './Mixins/ProfileMixin'
+  import notifications from './services/notifications'
   export default {
     name: 'app',
     mixins: [profileMixin],
@@ -92,6 +97,7 @@
     methods: {
       onDeviceReady () {
         console.log('Working on platform: ' + window.device.platform)
+        notifications.enable()
       },
       toggleLeftSidenav () {
         this.$refs['leftSidenav'].toggle()

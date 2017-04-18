@@ -10,6 +10,7 @@ import DeviceInfo from '../components/DeviceInfo'
 import NotFound from '../components/NotFound'
 import Cordova from '../components/Cordova'
 import Exit from '../components/Exit'
+import Notifications from '../components/Notifications'
 
 const routes = [
   { path: '/android_asset/www/index.html',
@@ -34,6 +35,13 @@ const routes = [
   },
   { path: '/profile',
     component: Profile,
+    meta: { auth: true }
+  },
+  { path: '/notifications',
+    component: Notifications,
+    props: (route) => ({
+      params: route.params.notifications
+    }),
     meta: { auth: true }
   },
   { path: '/cordova',
