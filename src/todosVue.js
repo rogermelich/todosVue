@@ -8,8 +8,6 @@ const todosVue = {
   API_TASK_URL: 'http://rmelich.todosbackend.2dam.acacha.org:8080/api/v1/task',
   API_PROFILE_URL: 'http://rmelich.todosbackend.2dam.acacha.org:8080/api/v1/user',
   ANDROID_SENDER_ID: '221272724270',
-  // REGISTER_GCM_TOKEN_URL: 'http://rmelich.todosbackend.2dam.acacha.org:8080/api/v1/user/gcmtoken',
-  // GET_MESSAGES_URL: 'http://rmelich.todosbackend.2dam.acacha.org:8080/user/messages'
   REGISTER_GCM_TOKEN_URL: 'http://localhost:8080/api/v1/user/gcmtoken',
   GET_MESSAGES_URL: 'http://localhost:8080/user/messages'
 }
