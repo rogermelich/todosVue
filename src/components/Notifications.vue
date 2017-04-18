@@ -12,14 +12,15 @@
 <style>
 </style>
 <script>
+ import notifications from '../services/notifications'
  export default {
    created () {
-       document.addEventListener('deviceready', this.onDeviceReady, false)
+     document.addEventListener('deviceready', this.onDeviceReady, false)
    },
    methods: {
-       onDeviceReady  () {
-           notifications.enable()
-       }
+     onDeviceReady  () {
+       notifications.enable()
+     }
    },
    props: {
      notifications: {
