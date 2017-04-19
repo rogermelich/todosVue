@@ -81,7 +81,7 @@
                     <!--<md-button>Delete</md-button>-->
                 </md-card-actions>
                 <md-snackbar md-position="bottom center" ref="connectionError" md-duration="4000">
-                    <span>Connection error. Please reconnect using connect button!.</span>
+                    <span>Connection error. Please reconnect using connect button o Exit and Open App!.</span>
                 </md-snackbar>
                 <md-snackbar md-position="bottom center" ref="contactsError" md-duration="4000">
                     <span>Contacts API not supported!</span>
@@ -116,18 +116,20 @@
         updatedAt: null,
         connecting: true,
         phone: 666666666,
-        latitude: null,
-        longitude: null
+        latitude: '',
+        longitude: ''
       }
     },
     created () {
       document.addEventListener('deviceready', this.onDeviceReady, false)
       this.$material.setCurrentTheme('profile')
-      this.latitude = auth.getLatitude()
-      this.longitude = auth.getLongitude()
     },
     beforeDestroy () {
       document.removeEventListener('deviceready', this.onBeforeDestroy, false)
+    },
+    mounted () {
+      this.latitude = auth.getLatitude()
+      this.longitude = auth.getLongitude()
     },
     methods: {
       onDeviceReady: function () {
@@ -173,8 +175,8 @@
             function (position) {
               auth.saveLatitude(position.coords.latitude)
               auth.saveLongitude(position.coords.longitude)
-              this.latitude = position.coords.latitude
-              this.longitude = position.coords.longitude
+              this.latitude = auth.getLatitude()
+              this.longitude = auth.getLongitude()
             })
         }
       },

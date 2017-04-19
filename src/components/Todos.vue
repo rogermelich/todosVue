@@ -50,7 +50,7 @@
             </md-table-card>
 
             <md-snackbar md-position="bottom center" ref="connectionError" md-duration="4000">
-                <span>Connection error. Please check the connection</span>
+                <span>Connection error. Please reconnect using connect button o Exit and Open App!.</span>
             </md-snackbar>
 
         </div>

@@ -29,7 +29,7 @@
 
                 </md-card-content>
                 <md-snackbar md-position="bottom center" ref="connectionError" md-duration="4000">
-                    <span>Connection error. Please reconnect using connect button!.</span>
+                    <span>Connection error. Please reconnect using connect button o Exit and Open App!.</span>
                 </md-snackbar>
             </md-card>
         </div>
@@ -37,7 +37,7 @@
 </template>
 <style>
     .md-input-container textarea {
-        min-height: 300px;
+        min-height: 500px;
     }
 </style>
 <script>
