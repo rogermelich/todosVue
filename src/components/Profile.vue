@@ -67,11 +67,11 @@
                 <md-card-actions>
                     <md-button @click.native="onSaveUserPhone">
                         <md-icon>save</md-icon>
-                        <span class="md-subheading">Get Contact</span>
+                        <span class="md-subheading">Contact</span>
                     </md-button>
                     <md-button @click.native="onSaveLocation">
                         <md-icon>location_on</md-icon>
-                        <span class="md-subheading">Get Location</span>
+                        <span class="md-subheading">Location</span>
                     </md-button>
                     <md-button @click.native="onChangeAvatar">
                         <md-icon>assignment_ind</md-icon>
@@ -116,13 +116,15 @@
         updatedAt: null,
         connecting: true,
         phone: 666666666,
-        latitude: auth.getLatitude(),
-        longitude: auth.getLongitude()
+        latitude: null,
+        longitude: null
       }
     },
     created () {
       document.addEventListener('deviceready', this.onDeviceReady, false)
       this.$material.setCurrentTheme('profile')
+      this.latitude = auth.getLatitude()
+      this.longitude = auth.getLongitude()
     },
     beforeDestroy () {
       document.removeEventListener('deviceready', this.onBeforeDestroy, false)
@@ -171,6 +173,8 @@
             function (position) {
               auth.saveLatitude(position.coords.latitude)
               auth.saveLongitude(position.coords.longitude)
+              this.latitude = position.coords.latitude
+              this.longitude = position.coords.longitude
             })
         }
       },

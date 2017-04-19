@@ -2,15 +2,16 @@
 
 import todosVue from '../todosVue'
 import app from '../App.vue'
+import Form from 'acacha-forms'
 import router from './router'
 
 export default {
   get () {
     return {
-      notifications: this.fetch()
+      notifications: this.fetchNotifications()
     }
   },
-  fetch: function () {
+  fetchNotifications: function () {
     window.axios.get(todosVue.GET_MESSAGES_URL).then((response) => {
       console.log(response.data)
       return response.data
@@ -21,7 +22,7 @@ export default {
   enable () {
     this.init()
     this.register()
-    // this.subscribe('all')
+    this.subscribe('all')
     this.process()
   },
   init () {
@@ -45,6 +46,16 @@ export default {
         // Save new registration ID
         localStorage.setItem('registrationId', data.registrationId)
         // Post registrationId to your app server as the value has changed
+        let form = new Form({'registration_id': data.registrationId})
+
+        form.post(todosVue.REGISTER_GCM_TOKEN_URL)
+          .then(response => {
+            console.log('GCM token registered OK!')
+          })
+          .catch(error => {
+            console.log('And error ocurred adding GCM token to backend!')
+            console.log(error)
+          })
       }
     })
   },
@@ -60,7 +71,6 @@ export default {
     app.push.on('error', function (e) {
       console.log('push error = ' + e.message)
     })
-    let notifications = this
     app.push.on('notification', function (data) {
       console.log('Notification event received!')
       console.log('Title: ' + data.title)
@@ -70,7 +80,7 @@ export default {
       router.push({
         path: '/notifications',
         params: {
-          notifications: notifications.fetch()
+          notifications: this.fetchNotifications()
         }
       })
     })

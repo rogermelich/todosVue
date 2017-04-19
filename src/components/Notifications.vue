@@ -14,20 +14,21 @@
 <script>
  import notifications from '../services/notifications'
  export default {
-   created () {
-     document.addEventListener('deviceready', this.onDeviceReady, false)
-   },
-   methods: {
-     onDeviceReady  () {
-       notifications.enable()
-     }
-   },
    props: {
      notifications: {
        type: Array,
        default: function () {
          return []
        }
+     }
+   },
+   created () {
+     document.addEventListener('deviceready', this.onDeviceReady, false)
+   },
+   methods: {
+     onDeviceReady  () {
+       notifications.enable()
+       notifications.processPushNotifications()
      }
    }
  }
