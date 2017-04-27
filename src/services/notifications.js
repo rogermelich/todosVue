@@ -12,7 +12,7 @@ export default {
     }
   },
   fetchNotifications: function () {
-    window.axios.get(todosVue.GET_MESSAGES_URL).then((response) => {
+    this.$http.get(todosVue.GET_MESSAGES_URL).then((response) => {
       console.log(response.data)
       return response.data
     }, (error) => {
@@ -51,6 +51,7 @@ export default {
         form.post(todosVue.REGISTER_GCM_TOKEN_URL)
           .then(response => {
             console.log('GCM token registered OK!')
+            // localStorage.setItem('registrationId', data.registrationId)
           })
           .catch(error => {
             console.log('And error ocurred adding GCM token to backend!')
