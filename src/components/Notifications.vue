@@ -3,7 +3,7 @@
         <div align="center">
             <md-spinner :md-size="300" md-indeterminate v-show="connecting"></md-spinner>
         </div>
-        <h1>Received notifications: </h1>
+        <h1>Received Notifications: </h1>
         <div id="notifications" v-for="(notification, index) in notifications">
             <md-card md-with-hover>
                 <md-card-header>
